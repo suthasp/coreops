@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoreOps Engineering — ที่ปรึกษา Data Center Facility | Audit · PM Planning · Training</title>
+<meta name="description" content="บริการตรวจประเมิน (Audit) ห้อง Server และ Data Center, วางแผน Preventive Maintenance และอบรมทีมช่าง/วิศวกร โดยผู้เชี่ยวชาญงาน Facility Operation ตัวจริง">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a1628; --navy2:#111f35; --cyan:#19c2e6; --cyan-d:#0e9fc0;
+  --text:#e8eef6; --muted:#9db0c7; --card:#16273f; --line:#23395a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Sarabun',sans-serif;background:var(--navy);color:var(--text);line-height:1.7}
+h1,h2,h3{font-family:'Prompt',sans-serif;line-height:1.35}
+a{color:var(--cyan);text-decoration:none}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(10,22,40,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Prompt';font-weight:700;font-size:1.2rem;color:#fff}
+.logo span{color:var(--cyan)}
+.nav-links{display:flex;gap:28px;font-size:.95rem}
+.nav-links a{color:var(--muted)}
+.nav-links a:hover{color:#fff}
+.btn{display:inline-block;background:var(--cyan);color:#06121f;font-weight:600;font-family:'Prompt';padding:12px 28px;border-radius:8px;border:none;cursor:pointer;font-size:1rem;transition:.2s}
+.btn:hover{background:var(--cyan-d);color:#06121f}
+.btn-sm{padding:8px 20px;font-size:.9rem}
+
+/* Hero */
+.hero{padding:90px 0 70px;background:
+  radial-gradient(900px 400px at 80% -10%, rgba(25,194,230,.15), transparent),
+  linear-gradient(180deg,var(--navy) 0%, var(--navy2) 100%)}
+.hero .tag{display:inline-block;border:1px solid var(--cyan);color:var(--cyan);font-size:.85rem;padding:4px 14px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:clamp(1.7rem,4.5vw,2.7rem);font-weight:700;color:#fff;max-width:760px}
+.hero h1 em{color:var(--cyan);font-style:normal}
+.hero p{margin:20px 0 32px;max-width:640px;color:var(--muted);font-size:1.08rem}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);background:transparent}
+.stats{display:flex;gap:44px;margin-top:54px;flex-wrap:wrap}
+.stat b{font-family:'Prompt';font-size:1.7rem;color:var(--cyan);display:block}
+.stat small{color:var(--muted)}
+
+/* Sections */
+section{padding:80px 0}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 50px}
+.sec-head h2{font-size:clamp(1.5rem,3vw,2rem);color:#fff}
+.sec-head p{color:var(--muted);margin-top:12px}
+
+/* Pain points */
+.pains{background:var(--navy2)}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px}
+.pain h3{font-size:1.02rem;color:#fff;margin-bottom:8px}
+.pain p{font-size:.93rem;color:var(--muted)}
+.pain .ic{font-size:1.6rem;margin-bottom:12px;display:block}
+
+/* Services */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:32px 28px;display:flex;flex-direction:column;transition:.2s}
+.svc:hover{border-color:var(--cyan);transform:translateY(-4px)}
+.svc .num{font-family:'Prompt';font-weight:700;color:var(--cyan);font-size:.9rem;letter-spacing:2px}
+.svc h3{font-size:1.25rem;color:#fff;margin:10px 0 14px}
+.svc ul{list-style:none;flex:1}
+.svc li{padding-left:24px;position:relative;margin-bottom:10px;color:var(--muted);font-size:.95rem}
+.svc li::before{content:"✓";position:absolute;left:0;color:var(--cyan);font-weight:700}
+.svc .fit{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);font-size:.88rem;color:var(--muted)}
+.svc .fit b{color:var(--text)}
+
+/* Why us */
+.why{background:var(--navy2)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.why-item{padding:24px;border-left:3px solid var(--cyan);background:var(--card);border-radius:0 12px 12px 0}
+.why-item h3{font-size:1.02rem;color:#fff;margin-bottom:8px}
+.why-item p{font-size:.93rem;color:var(--muted)}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;counter-reset:step}
+.step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px 22px;position:relative}
+.step::before{counter-increment:step;content:counter(step);position:absolute;top:-16px;left:22px;width:34px;height:34px;border-radius:50%;background:var(--cyan);color:#06121f;font-family:'Prompt';font-weight:700;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:1rem;color:#fff;margin:10px 0 6px}
+.step p{font-size:.9rem;color:var(--muted)}
+
+/* Contact */
+.contact{background:linear-gradient(180deg,var(--navy2),var(--navy))}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:start}
+.contact-info h2{font-size:1.6rem;color:#fff;margin-bottom:14px}
+.contact-info p{color:var(--muted);margin-bottom:28px}
+.c-line{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+.c-line .ic{font-size:1.3rem}
+.c-line b{display:block;color:#fff;font-size:.95rem}
+.c-line span{color:var(--muted);font-size:.95rem}
+form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:32px}
+label{display:block;font-size:.9rem;margin-bottom:6px;color:var(--text);font-weight:500}
+input,select,textarea{width:100%;background:var(--navy);border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:var(--text);font-family:'Sarabun';font-size:.95rem;margin-bottom:18px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan)}
+form .btn{width:100%}
+
+footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:.88rem}
+
+@media(max-width:760px){
+  .nav-links{display:none}
+  .contact-wrap{grid-template-columns:1fr}
+  section{padding:60px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">Core<span>Ops</span> Engineering</div>
+    <div class="nav-links">
+      <a href="#services">บริการ</a>
+      <a href="#why">ทำไมต้องเรา</a>
+      <a href="#process">ขั้นตอน</a>
+      <a href="#contact">ติดต่อ</a>
+    </div>
+    <a class="btn btn-sm" href="#contact">ขอใบเสนอราคา</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="tag">ที่ปรึกษา Data Center Facility &amp; Critical Environment</span>
+    <h1>ห้อง Server ของคุณ<br>พร้อมรับมือเหตุไฟดับ–ระบบล่ม<em>แค่ไหน?</em></h1>
+    <p>เราตรวจประเมิน วางแผนบำรุงรักษา และอบรมทีมงานของคุณ ด้วยประสบการณ์ปฏิบัติงานจริงด้าน Facility Operation, Preventive &amp; Corrective Maintenance ใน Data Center ระดับมืออาชีพ — เพื่อให้ระบบของคุณ "ไม่ล่ม" ไม่ใช่แค่ "ซ่อมเร็ว"</p>
+    <div class="hero-cta">
+      <a class="btn" href="#contact">ปรึกษาฟรี ไม่มีค่าใช้จ่าย</a>
+      <a class="btn btn-ghost" href="#services">ดูบริการของเรา</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>10+ ปี</b><small>ประสบการณ์ Facility Operation จริง</small></div>
+      <div class="stat"><b>24/7</b><small>มุมมองจากงานเดินระบบจริง ไม่ใช่แค่ทฤษฎี</small></div>
+      <div class="stat"><b>100%</b><small>รายงานพร้อมแผนแก้ไขที่ทำได้จริง</small></div>
+    </div>
+  </div>
+</header>
+
+<section class="pains">
+  <div class="container">
+    <div class="sec-head">
+      <h2>ปัญหาเหล่านี้ คุ้นไหมครับ?</h2>
+      <p>องค์กรส่วนใหญ่ "มี" ห้อง Server แต่ไม่มีคนดูแลระบบ Facility อย่างเป็นระบบ</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain"><span class="ic">⚡</span><h3>UPS ไม่เคยถูกทดสอบ</h3><p>แบตเตอรี่เสื่อมโดยไม่รู้ตัว กว่าจะรู้ก็ตอนไฟดับแล้วระบบล่มทั้งบริษัท</p></div>
+      <div class="pain"><span class="ic">🌡️</span><h3>แอร์เสียกลางดึก ไม่มีแผนสำรอง</h3><p>อุณหภูมิพุ่ง อุปกรณ์ดับ ไม่มี SOP ว่าใครต้องทำอะไร</p></div>
+      <div class="pain"><span class="ic">📋</span><h3>ไม่มีแผน PM ที่เป็นระบบ</h3><p>ซ่อมเมื่อพัง (Corrective อย่างเดียว) ค่าใช้จ่ายแฝงสูงกว่าการป้องกันหลายเท่า</p></div>
+      <div class="pain"><span class="ic">👷</span><h3>ทีมช่างขาดความรู้เฉพาะทาง</h3><p>ดูแลอาคารทั่วไปได้ แต่ไม่เข้าใจ Critical Environment ของห้อง Server</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="sec-head">
+      <h2>บริการของเรา</h2>
+      <p>ครอบคลุมตั้งแต่ตรวจประเมิน วางระบบ ไปจนถึงสร้างทีมของคุณให้ดูแลเองได้</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc">
+        <span class="num">SERVICE 01</span>
+        <h3>Facility Audit ห้อง Server / Data Center</h3>
+        <ul>
+          <li>ตรวจประเมินระบบไฟฟ้า, UPS, เครื่องกำเนิดไฟฟ้า</li>
+          <li>ตรวจระบบปรับอากาศ (Precision Air / Cooling)</li>
+          <li>ระบบดับเพลิง, ควบคุมการเข้าออก, Monitoring</li>
+          <li>ประเมินความเสี่ยง Single Point of Failure</li>
+          <li>รายงานผล + แผนแก้ไขเรียงตามความเร่งด่วน</li>
+        </ul>
+        <div class="fit"><b>เหมาะกับ:</b> องค์กรที่มีห้อง Server เอง และอยากรู้ว่า "เสี่ยงตรงไหน" ก่อนเกิดเหตุ</div>
+      </div>
+      <div class="svc">
+        <span class="num">SERVICE 02</span>
+        <h3>วางแผน Preventive Maintenance (PM)</h3>
+        <ul>
+          <li>ออกแบบแผน PM รายสัปดาห์/เดือน/ปี ทุกระบบ</li>
+          <li>จัดทำ Checklist และ SOP มาตรฐาน Data Center</li>
+          <li>วางขั้นตอน Corrective Maintenance และ Escalation</li>
+          <li>กำหนด Spare Part ที่ควรมีสำรอง</li>
+          <li>ระบบเอกสารพร้อมใช้ ส่งมอบให้ทีมของคุณ</li>
+        </ul>
+        <div class="fit"><b>เหมาะกับ:</b> องค์กรที่ซ่อมเมื่อพัง และอยากเปลี่ยนมาเป็นการป้องกันเชิงระบบ</div>
+      </div>
+      <div class="svc">
+        <span class="num">SERVICE 03</span>
+        <h3>อบรมทีมช่าง / วิศวกร In-house</h3>
+        <ul>
+          <li>พื้นฐาน Critical Environment สำหรับห้อง Server</li>
+          <li>การทำ PM ระบบไฟฟ้า UPS และระบบปรับอากาศ</li>
+          <li>การตอบสนองเหตุฉุกเฉิน (Emergency Response)</li>
+          <li>ฝึกจากเคสจริง ไม่ใช่แค่สไลด์</li>
+          <li>จัดอบรม On-site ที่หน้างานของคุณ</li>
+        </ul>
+        <div class="fit"><b>เหมาะกับ:</b> องค์กรที่อยากให้ทีมตัวเองดูแลได้เอง ลดการพึ่ง Vendor ภายนอก</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="container">
+    <div class="sec-head">
+      <h2>ทำไมต้องเรา</h2>
+      <p>เราไม่ใช่ที่ปรึกษาที่รู้แต่ทฤษฎี — เราคือคนที่เดินระบบจริงทุกวัน</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><h3>ประสบการณ์หน้างานจริง</h3><p>ปฏิบัติงาน Operation และ Maintenance ใน Data Center จริง เห็นทุกเคสที่เกิดขึ้นจริง ไม่ใช่แค่ในตำรา</p></div>
+      <div class="why-item"><h3>รายงานที่ทำตามได้จริง</h3><p>ไม่ใช่รายงานหนา 100 หน้าที่อ่านไม่รู้เรื่อง แต่เป็นแผนแก้ไขที่เรียงลำดับความเร่งด่วนและงบประมาณชัดเจน</p></div>
+      <div class="why-item"><h3>เป็นกลาง ไม่ขายของ</h3><p>เราไม่ได้เป็นตัวแทนขายอุปกรณ์ยี่ห้อใด คำแนะนำของเราจึงยึดประโยชน์ของคุณเป็นหลัก</p></div>
+      <div class="why-item"><h3>ถ่ายทอดให้ทีมคุณทำต่อได้</h3><p>เป้าหมายคือให้ทีมของคุณดูแลระบบเองได้อย่างมั่นใจ ไม่ใช่ผูกคุณไว้กับเราตลอดไป</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="sec-head">
+      <h2>ขั้นตอนการทำงาน</h2>
+      <p>เริ่มต้นง่าย รู้ค่าใช้จ่ายชัดเจนก่อนตัดสินใจ</p>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>ปรึกษาเบื้องต้น (ฟรี)</h3><p>คุยปัญหาและความต้องการ ทางโทรศัพท์หรือออนไลน์ ~30 นาที</p></div>
+      <div class="step"><h3>สำรวจหน้างาน</h3><p>เข้าดูสถานที่จริง ประเมินขอบเขตงานและเสนอราคา</p></div>
+      <div class="step"><h3>ดำเนินงาน</h3><p>Audit / วางแผน PM / อบรม ตามขอบเขตที่ตกลง</p></div>
+      <div class="step"><h3>ส่งมอบ + ติดตามผล</h3><p>รายงานและเอกสารครบถ้วน พร้อมให้คำปรึกษาต่อเนื่อง</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container contact-wrap">
+    <div class="contact-info">
+      <h2>ปรึกษาฟรี ไม่มีค่าใช้จ่าย</h2>
+      <p>เล่าปัญหาหรือความต้องการของคุณ เราจะติดต่อกลับภายใน 1 วันทำการ</p>
+      <div class="c-line"><span class="ic">📞</span><div><b>โทรศัพท์</b><span><a href="tel:0909891888">090-989-1888</a></span></div></div>
+      <div class="c-line"><span class="ic">✉️</span><div><b>อีเมล</b><span>suthasp@gmail.com</span></div></div>
+      <div class="c-line"><span class="ic">🕐</span><div><b>เวลาทำการ</b><span>จันทร์–เสาร์ 9:00–18:00 น.</span></div></div>
+    </div>
+    <form action="https://formsubmit.co/suthasp@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="ติดต่อจากเว็บ CoreOps Engineering">
+      <input type="hidden" name="_captcha" value="true">
+      <label>ชื่อ–นามสกุล *</label>
+      <input type="text" name="name" required placeholder="ชื่อของคุณ">
+      <label>บริษัท / องค์กร</label>
+      <input type="text" name="company" placeholder="ชื่อบริษัท">
+      <label>เบอร์โทร / อีเมล *</label>
+      <input type="text" name="contact" required placeholder="ช่องทางติดต่อกลับ">
+      <label>บริการที่สนใจ</label>
+      <select name="service">
+        <option>Audit ห้อง Server / Data Center</option>
+        <option>วางแผน Preventive Maintenance</option>
+        <option>อบรมทีมช่าง / วิศวกร</option>
+        <option>ยังไม่แน่ใจ ขอคำปรึกษาก่อน</option>
+      </select>
+      <label>รายละเอียดเพิ่มเติม</label>
+      <textarea name="message" rows="4" placeholder="เล่าปัญหาหรือสิ่งที่ต้องการคร่าวๆ"></textarea>
+      <button class="btn" type="submit">ส่งข้อความ</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">© 2026 CoreOps Engineering — ที่ปรึกษา Data Center Facility · Audit · PM Planning · Training</div>
+</footer>
+
+</body>
+</html>
