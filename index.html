@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <script>
-(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');document.documentElement.dataset.theme=t})();
+(function(){
+  var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');
+  document.documentElement.dataset.theme=t;
+  var l=localStorage.getItem('lang')||'th';
+  document.documentElement.lang=l;
+  document.documentElement.dataset.lang=l;
+})();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TEXSON — ที่ปรึกษา Data Center Facility | Audit · PM Planning · Training</title>
@@ -36,9 +42,12 @@ nav{position:sticky;top:0;z-index:50;background:rgba(10,22,40,.92);backdrop-filt
 .nav-links{display:flex;gap:28px;font-size:.95rem}
 .nav-links a{color:var(--muted)}
 .nav-links a:hover{color:#fff}
+.nav-controls{display:flex;align-items:center;gap:10px}
 .btn{display:inline-block;background:var(--cyan);color:#06121f;font-weight:600;font-family:'Prompt';padding:12px 28px;border-radius:8px;border:none;cursor:pointer;font-size:1rem;transition:.2s}
 .btn:hover{background:var(--cyan-d);color:#06121f}
 .btn-sm{padding:8px 20px;font-size:.9rem}
+.ctrl-btn{background:none;border:1px solid var(--line);color:var(--muted);min-width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:600;font-family:'Prompt';display:inline-flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0;padding:0 8px}
+.ctrl-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 
 /* Hero */
 .hero{padding:90px 0 70px;background:
@@ -112,11 +121,7 @@ form .btn{width:100%}
 
 footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:.88rem}
 
-/* Theme toggle button */
-.theme-toggle{background:none;border:1px solid var(--line);color:var(--muted);width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:1rem;display:inline-flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0}
-.theme-toggle:hover{border-color:var(--cyan);color:var(--cyan)}
-
-/* Light mode overrides for hard-coded #fff colors */
+/* Light mode overrides */
 html[data-theme="light"] nav{background:rgba(240,244,248,.95)}
 html[data-theme="light"] .logo,
 html[data-theme="light"] .hero h1,
@@ -143,29 +148,32 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
   <div class="container nav-inner">
     <div class="logo">TEX<span>SON</span></div>
     <div class="nav-links">
-      <a href="#services">บริการ</a>
-      <a href="#why">ทำไมต้องเรา</a>
-      <a href="#process">ขั้นตอน</a>
-      <a href="#contact">ติดต่อ</a>
+      <a href="#services" data-i18n="nav.services">บริการ</a>
+      <a href="#why" data-i18n="nav.why">ทำไมต้องเรา</a>
+      <a href="#process" data-i18n="nav.process">ขั้นตอน</a>
+      <a href="#contact" data-i18n="nav.contact">ติดต่อ</a>
     </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="สลับโหมด"></button>
-    <a class="btn btn-sm" href="#contact">ขอใบเสนอราคา</a>
+    <div class="nav-controls">
+      <button class="ctrl-btn" id="langToggle" aria-label="Switch language">EN</button>
+      <button class="ctrl-btn" id="themeToggle" aria-label="Switch theme">☀</button>
+      <a class="btn btn-sm" href="#contact" data-i18n="nav.cta">ขอใบเสนอราคา</a>
+    </div>
   </div>
 </nav>
 
 <header class="hero">
   <div class="container">
-    <span class="tag">ที่ปรึกษา Data Center Facility &amp; Critical Environment</span>
-    <h1>ห้อง Server ของคุณ<br>พร้อมรับมือเหตุไฟดับ–ระบบล่ม<em>แค่ไหน?</em></h1>
-    <p>เราตรวจประเมิน วางแผนบำรุงรักษา และอบรมทีมงานของคุณ ด้วยประสบการณ์ปฏิบัติงานจริงด้าน Facility Operation, Preventive &amp; Corrective Maintenance ใน Data Center ระดับมืออาชีพ — เพื่อให้ระบบของคุณ "ไม่ล่ม" ไม่ใช่แค่ "ซ่อมเร็ว"</p>
+    <span class="tag" data-i18n="hero.tag">ที่ปรึกษา Data Center Facility &amp; Critical Environment</span>
+    <h1 data-i18n="hero.h1">ห้อง Server ของคุณ<br>พร้อมรับมือเหตุไฟดับ–ระบบล่ม<em>แค่ไหน?</em></h1>
+    <p data-i18n="hero.p">เราตรวจประเมิน วางแผนบำรุงรักษา และอบรมทีมงานของคุณ ด้วยประสบการณ์ปฏิบัติงานจริงด้าน Facility Operation, Preventive &amp; Corrective Maintenance ใน Data Center ระดับมืออาชีพ — เพื่อให้ระบบของคุณ "ไม่ล่ม" ไม่ใช่แค่ "ซ่อมเร็ว"</p>
     <div class="hero-cta">
-      <a class="btn" href="#contact">ปรึกษาฟรี ไม่มีค่าใช้จ่าย</a>
-      <a class="btn btn-ghost" href="#services">ดูบริการของเรา</a>
+      <a class="btn" href="#contact" data-i18n="hero.cta1">ปรึกษาฟรี ไม่มีค่าใช้จ่าย</a>
+      <a class="btn btn-ghost" href="#services" data-i18n="hero.cta2">ดูบริการของเรา</a>
     </div>
     <div class="stats">
-      <div class="stat"><b>10+ ปี</b><small>ประสบการณ์ Facility Operation จริง</small></div>
-      <div class="stat"><b>24/7</b><small>มุมมองจากงานเดินระบบจริง ไม่ใช่แค่ทฤษฎี</small></div>
-      <div class="stat"><b>100%</b><small>รายงานพร้อมแผนแก้ไขที่ทำได้จริง</small></div>
+      <div class="stat"><b>10+ ปี</b><small data-i18n="stat1.label">ประสบการณ์ Facility Operation จริง</small></div>
+      <div class="stat"><b>24/7</b><small data-i18n="stat2.label">มุมมองจากงานเดินระบบจริง ไม่ใช่แค่ทฤษฎี</small></div>
+      <div class="stat"><b>100%</b><small data-i18n="stat3.label">รายงานพร้อมแผนแก้ไขที่ทำได้จริง</small></div>
     </div>
   </div>
 </header>
@@ -173,14 +181,14 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
 <section class="pains">
   <div class="container">
     <div class="sec-head">
-      <h2>ปัญหาเหล่านี้ คุ้นไหมครับ?</h2>
-      <p>องค์กรส่วนใหญ่ "มี" ห้อง Server แต่ไม่มีคนดูแลระบบ Facility อย่างเป็นระบบ</p>
+      <h2 data-i18n="pains.h2">ปัญหาเหล่านี้ คุ้นไหมครับ?</h2>
+      <p data-i18n="pains.p">องค์กรส่วนใหญ่ "มี" ห้อง Server แต่ไม่มีคนดูแลระบบ Facility อย่างเป็นระบบ</p>
     </div>
     <div class="pain-grid">
-      <div class="pain"><span class="ic">⚡</span><h3>UPS ไม่เคยถูกทดสอบ</h3><p>แบตเตอรี่เสื่อมโดยไม่รู้ตัว กว่าจะรู้ก็ตอนไฟดับแล้วระบบล่มทั้งบริษัท</p></div>
-      <div class="pain"><span class="ic">🌡️</span><h3>แอร์เสียกลางดึก ไม่มีแผนสำรอง</h3><p>อุณหภูมิพุ่ง อุปกรณ์ดับ ไม่มี SOP ว่าใครต้องทำอะไร</p></div>
-      <div class="pain"><span class="ic">📋</span><h3>ไม่มีแผน PM ที่เป็นระบบ</h3><p>ซ่อมเมื่อพัง (Corrective อย่างเดียว) ค่าใช้จ่ายแฝงสูงกว่าการป้องกันหลายเท่า</p></div>
-      <div class="pain"><span class="ic">👷</span><h3>ทีมช่างขาดความรู้เฉพาะทาง</h3><p>ดูแลอาคารทั่วไปได้ แต่ไม่เข้าใจ Critical Environment ของห้อง Server</p></div>
+      <div class="pain"><span class="ic">⚡</span><h3 data-i18n="pain1.h3">UPS ไม่เคยถูกทดสอบ</h3><p data-i18n="pain1.p">แบตเตอรี่เสื่อมโดยไม่รู้ตัว กว่าจะรู้ก็ตอนไฟดับแล้วระบบล่มทั้งบริษัท</p></div>
+      <div class="pain"><span class="ic">🌡️</span><h3 data-i18n="pain2.h3">แอร์เสียกลางดึก ไม่มีแผนสำรอง</h3><p data-i18n="pain2.p">อุณหภูมิพุ่ง อุปกรณ์ดับ ไม่มี SOP ว่าใครต้องทำอะไร</p></div>
+      <div class="pain"><span class="ic">📋</span><h3 data-i18n="pain3.h3">ไม่มีแผน PM ที่เป็นระบบ</h3><p data-i18n="pain3.p">ซ่อมเมื่อพัง (Corrective อย่างเดียว) ค่าใช้จ่ายแฝงสูงกว่าการป้องกันหลายเท่า</p></div>
+      <div class="pain"><span class="ic">👷</span><h3 data-i18n="pain4.h3">ทีมช่างขาดความรู้เฉพาะทาง</h3><p data-i18n="pain4.p">ดูแลอาคารทั่วไปได้ แต่ไม่เข้าใจ Critical Environment ของห้อง Server</p></div>
     </div>
   </div>
 </section>
@@ -188,45 +196,45 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
 <section id="services">
   <div class="container">
     <div class="sec-head">
-      <h2>บริการของเรา</h2>
-      <p>ครอบคลุมตั้งแต่ตรวจประเมิน วางระบบ ไปจนถึงสร้างทีมของคุณให้ดูแลเองได้</p>
+      <h2 data-i18n="svc.h2">บริการของเรา</h2>
+      <p data-i18n="svc.p">ครอบคลุมตั้งแต่ตรวจประเมิน วางระบบ ไปจนถึงสร้างทีมของคุณให้ดูแลเองได้</p>
     </div>
     <div class="svc-grid">
       <div class="svc">
         <span class="num">SERVICE 01</span>
-        <h3>Facility Audit ห้อง Server / Data Center</h3>
+        <h3 data-i18n="svc1.h3">Facility Audit ห้อง Server / Data Center</h3>
         <ul>
-          <li>ตรวจประเมินระบบไฟฟ้า, UPS, เครื่องกำเนิดไฟฟ้า</li>
-          <li>ตรวจระบบปรับอากาศ (Precision Air / Cooling)</li>
-          <li>ระบบดับเพลิง, ควบคุมการเข้าออก, Monitoring</li>
-          <li>ประเมินความเสี่ยง Single Point of Failure</li>
-          <li>รายงานผล + แผนแก้ไขเรียงตามความเร่งด่วน</li>
+          <li data-i18n="svc1.li1">ตรวจประเมินระบบไฟฟ้า, UPS, เครื่องกำเนิดไฟฟ้า</li>
+          <li data-i18n="svc1.li2">ตรวจระบบปรับอากาศ (Precision Air / Cooling)</li>
+          <li data-i18n="svc1.li3">ระบบดับเพลิง, ควบคุมการเข้าออก, Monitoring</li>
+          <li data-i18n="svc1.li4">ประเมินความเสี่ยง Single Point of Failure</li>
+          <li data-i18n="svc1.li5">รายงานผล + แผนแก้ไขเรียงตามความเร่งด่วน</li>
         </ul>
-        <div class="fit"><b>เหมาะกับ:</b> องค์กรที่มีห้อง Server เอง และอยากรู้ว่า "เสี่ยงตรงไหน" ก่อนเกิดเหตุ</div>
+        <div class="fit" data-i18n="svc1.fit"><b>เหมาะกับ:</b> องค์กรที่มีห้อง Server เอง และอยากรู้ว่า "เสี่ยงตรงไหน" ก่อนเกิดเหตุ</div>
       </div>
       <div class="svc">
         <span class="num">SERVICE 02</span>
-        <h3>วางแผน Preventive Maintenance (PM)</h3>
+        <h3 data-i18n="svc2.h3">วางแผน Preventive Maintenance (PM)</h3>
         <ul>
-          <li>ออกแบบแผน PM รายสัปดาห์/เดือน/ปี ทุกระบบ</li>
-          <li>จัดทำ Checklist และ SOP มาตรฐาน Data Center</li>
-          <li>วางขั้นตอน Corrective Maintenance และ Escalation</li>
-          <li>กำหนด Spare Part ที่ควรมีสำรอง</li>
-          <li>ระบบเอกสารพร้อมใช้ ส่งมอบให้ทีมของคุณ</li>
+          <li data-i18n="svc2.li1">ออกแบบแผน PM รายสัปดาห์/เดือน/ปี ทุกระบบ</li>
+          <li data-i18n="svc2.li2">จัดทำ Checklist และ SOP มาตรฐาน Data Center</li>
+          <li data-i18n="svc2.li3">วางขั้นตอน Corrective Maintenance และ Escalation</li>
+          <li data-i18n="svc2.li4">กำหนด Spare Part ที่ควรมีสำรอง</li>
+          <li data-i18n="svc2.li5">ระบบเอกสารพร้อมใช้ ส่งมอบให้ทีมของคุณ</li>
         </ul>
-        <div class="fit"><b>เหมาะกับ:</b> องค์กรที่ซ่อมเมื่อพัง และอยากเปลี่ยนมาเป็นการป้องกันเชิงระบบ</div>
+        <div class="fit" data-i18n="svc2.fit"><b>เหมาะกับ:</b> องค์กรที่ซ่อมเมื่อพัง และอยากเปลี่ยนมาเป็นการป้องกันเชิงระบบ</div>
       </div>
       <div class="svc">
         <span class="num">SERVICE 03</span>
-        <h3>อบรมทีมช่าง / วิศวกร In-house</h3>
+        <h3 data-i18n="svc3.h3">อบรมทีมช่าง / วิศวกร In-house</h3>
         <ul>
-          <li>พื้นฐาน Critical Environment สำหรับห้อง Server</li>
-          <li>การทำ PM ระบบไฟฟ้า UPS และระบบปรับอากาศ</li>
-          <li>การตอบสนองเหตุฉุกเฉิน (Emergency Response)</li>
-          <li>ฝึกจากเคสจริง ไม่ใช่แค่สไลด์</li>
-          <li>จัดอบรม On-site ที่หน้างานของคุณ</li>
+          <li data-i18n="svc3.li1">พื้นฐาน Critical Environment สำหรับห้อง Server</li>
+          <li data-i18n="svc3.li2">การทำ PM ระบบไฟฟ้า UPS และระบบปรับอากาศ</li>
+          <li data-i18n="svc3.li3">การตอบสนองเหตุฉุกเฉิน (Emergency Response)</li>
+          <li data-i18n="svc3.li4">ฝึกจากเคสจริง ไม่ใช่แค่สไลด์</li>
+          <li data-i18n="svc3.li5">จัดอบรม On-site ที่หน้างานของคุณ</li>
         </ul>
-        <div class="fit"><b>เหมาะกับ:</b> องค์กรที่อยากให้ทีมตัวเองดูแลได้เอง ลดการพึ่ง Vendor ภายนอก</div>
+        <div class="fit" data-i18n="svc3.fit"><b>เหมาะกับ:</b> องค์กรที่อยากให้ทีมตัวเองดูแลได้เอง ลดการพึ่ง Vendor ภายนอก</div>
       </div>
     </div>
   </div>
@@ -235,14 +243,14 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
 <section class="why" id="why">
   <div class="container">
     <div class="sec-head">
-      <h2>ทำไมต้องเรา</h2>
-      <p>เราไม่ใช่ที่ปรึกษาที่รู้แต่ทฤษฎี — เราคือคนที่เดินระบบจริงทุกวัน</p>
+      <h2 data-i18n="why.h2">ทำไมต้องเรา</h2>
+      <p data-i18n="why.p">เราไม่ใช่ที่ปรึกษาที่รู้แต่ทฤษฎี — เราคือคนที่เดินระบบจริงทุกวัน</p>
     </div>
     <div class="why-grid">
-      <div class="why-item"><h3>ประสบการณ์หน้างานจริง</h3><p>ปฏิบัติงาน Operation และ Maintenance ใน Data Center จริง เห็นทุกเคสที่เกิดขึ้นจริง ไม่ใช่แค่ในตำรา</p></div>
-      <div class="why-item"><h3>รายงานที่ทำตามได้จริง</h3><p>ไม่ใช่รายงานหนา 100 หน้าที่อ่านไม่รู้เรื่อง แต่เป็นแผนแก้ไขที่เรียงลำดับความเร่งด่วนและงบประมาณชัดเจน</p></div>
-      <div class="why-item"><h3>เป็นกลาง ไม่ขายของ</h3><p>เราไม่ได้เป็นตัวแทนขายอุปกรณ์ยี่ห้อใด คำแนะนำของเราจึงยึดประโยชน์ของคุณเป็นหลัก</p></div>
-      <div class="why-item"><h3>ถ่ายทอดให้ทีมคุณทำต่อได้</h3><p>เป้าหมายคือให้ทีมของคุณดูแลระบบเองได้อย่างมั่นใจ ไม่ใช่ผูกคุณไว้กับเราตลอดไป</p></div>
+      <div class="why-item"><h3 data-i18n="why1.h3">ประสบการณ์หน้างานจริง</h3><p data-i18n="why1.p">ปฏิบัติงาน Operation และ Maintenance ใน Data Center จริง เห็นทุกเคสที่เกิดขึ้นจริง ไม่ใช่แค่ในตำรา</p></div>
+      <div class="why-item"><h3 data-i18n="why2.h3">รายงานที่ทำตามได้จริง</h3><p data-i18n="why2.p">ไม่ใช่รายงานหนา 100 หน้าที่อ่านไม่รู้เรื่อง แต่เป็นแผนแก้ไขที่เรียงลำดับความเร่งด่วนและงบประมาณชัดเจน</p></div>
+      <div class="why-item"><h3 data-i18n="why3.h3">เป็นกลาง ไม่ขายของ</h3><p data-i18n="why3.p">เราไม่ได้เป็นตัวแทนขายอุปกรณ์ยี่ห้อใด คำแนะนำของเราจึงยึดประโยชน์ของคุณเป็นหลัก</p></div>
+      <div class="why-item"><h3 data-i18n="why4.h3">ถ่ายทอดให้ทีมคุณทำต่อได้</h3><p data-i18n="why4.p">เป้าหมายคือให้ทีมของคุณดูแลระบบเองได้อย่างมั่นใจ ไม่ใช่ผูกคุณไว้กับเราตลอดไป</p></div>
     </div>
   </div>
 </section>
@@ -250,14 +258,14 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
 <section id="process">
   <div class="container">
     <div class="sec-head">
-      <h2>ขั้นตอนการทำงาน</h2>
-      <p>เริ่มต้นง่าย รู้ค่าใช้จ่ายชัดเจนก่อนตัดสินใจ</p>
+      <h2 data-i18n="process.h2">ขั้นตอนการทำงาน</h2>
+      <p data-i18n="process.p">เริ่มต้นง่าย รู้ค่าใช้จ่ายชัดเจนก่อนตัดสินใจ</p>
     </div>
     <div class="steps">
-      <div class="step"><h3>ปรึกษาเบื้องต้น (ฟรี)</h3><p>คุยปัญหาและความต้องการ ทางโทรศัพท์หรือออนไลน์ ~30 นาที</p></div>
-      <div class="step"><h3>สำรวจหน้างาน</h3><p>เข้าดูสถานที่จริง ประเมินขอบเขตงานและเสนอราคา</p></div>
-      <div class="step"><h3>ดำเนินงาน</h3><p>Audit / วางแผน PM / อบรม ตามขอบเขตที่ตกลง</p></div>
-      <div class="step"><h3>ส่งมอบ + ติดตามผล</h3><p>รายงานและเอกสารครบถ้วน พร้อมให้คำปรึกษาต่อเนื่อง</p></div>
+      <div class="step"><h3 data-i18n="step1.h3">ปรึกษาเบื้องต้น (ฟรี)</h3><p data-i18n="step1.p">คุยปัญหาและความต้องการ ทางโทรศัพท์หรือออนไลน์ ~30 นาที</p></div>
+      <div class="step"><h3 data-i18n="step2.h3">สำรวจหน้างาน</h3><p data-i18n="step2.p">เข้าดูสถานที่จริง ประเมินขอบเขตงานและเสนอราคา</p></div>
+      <div class="step"><h3 data-i18n="step3.h3">ดำเนินงาน</h3><p data-i18n="step3.p">Audit / วางแผน PM / อบรม ตามขอบเขตที่ตกลง</p></div>
+      <div class="step"><h3 data-i18n="step4.h3">ส่งมอบ + ติดตามผล</h3><p data-i18n="step4.p">รายงานและเอกสารครบถ้วน พร้อมให้คำปรึกษาต่อเนื่อง</p></div>
     </div>
   </div>
 </section>
@@ -265,49 +273,207 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
 <section class="contact" id="contact">
   <div class="container contact-wrap">
     <div class="contact-info">
-      <h2>ปรึกษาฟรี ไม่มีค่าใช้จ่าย</h2>
-      <p>เล่าปัญหาหรือความต้องการของคุณ เราจะติดต่อกลับภายใน 1 วันทำการ</p>
-      <div class="c-line"><span class="ic">📞</span><div><b>โทรศัพท์</b><span><a href="tel:0909891888">090-989-1888</a></span></div></div>
-      <div class="c-line"><span class="ic">✉️</span><div><b>อีเมล</b><span>support@texson.co.th</span></div></div>
-      <div class="c-line"><span class="ic">🕐</span><div><b>เวลาทำการ</b><span>จันทร์–เสาร์ 9:00–18:00 น.</span></div></div>
+      <h2 data-i18n="contact.h2">ปรึกษาฟรี ไม่มีค่าใช้จ่าย</h2>
+      <p data-i18n="contact.p">เล่าปัญหาหรือความต้องการของคุณ เราจะติดต่อกลับภายใน 1 วันทำการ</p>
+      <div class="c-line"><span class="ic">📞</span><div><b data-i18n="contact.phone">โทรศัพท์</b><span><a href="tel:0909891888">090-989-1888</a></span></div></div>
+      <div class="c-line"><span class="ic">✉️</span><div><b data-i18n="contact.email">อีเมล</b><span>support@texson.co.th</span></div></div>
+      <div class="c-line"><span class="ic">🕐</span><div><b data-i18n="contact.hours">เวลาทำการ</b><span data-i18n="contact.hours.val">จันทร์–เสาร์ 9:00–18:00 น.</span></div></div>
     </div>
     <form action="https://formsubmit.co/support@texson.co.th" method="POST">
       <input type="hidden" name="_subject" value="ติดต่อจากเว็บ Texson">
       <input type="hidden" name="_captcha" value="true">
-      <label>ชื่อ–นามสกุล *</label>
-      <input type="text" name="name" required placeholder="ชื่อของคุณ">
-      <label>บริษัท / องค์กร</label>
-      <input type="text" name="company" placeholder="ชื่อบริษัท">
-      <label>เบอร์โทร / อีเมล *</label>
-      <input type="text" name="contact" required placeholder="ช่องทางติดต่อกลับ">
-      <label>บริการที่สนใจ</label>
+      <label data-i18n="form.name.label">ชื่อ–นามสกุล *</label>
+      <input type="text" name="name" required data-i18n-ph="form.name.ph" placeholder="ชื่อของคุณ">
+      <label data-i18n="form.company.label">บริษัท / องค์กร</label>
+      <input type="text" name="company" data-i18n-ph="form.company.ph" placeholder="ชื่อบริษัท">
+      <label data-i18n="form.contact.label">เบอร์โทร / อีเมล *</label>
+      <input type="text" name="contact" required data-i18n-ph="form.contact.ph" placeholder="ช่องทางติดต่อกลับ">
+      <label data-i18n="form.service.label">บริการที่สนใจ</label>
       <select name="service">
-        <option>Audit ห้อง Server / Data Center</option>
-        <option>วางแผน Preventive Maintenance</option>
-        <option>อบรมทีมช่าง / วิศวกร</option>
-        <option>ยังไม่แน่ใจ ขอคำปรึกษาก่อน</option>
+        <option data-i18n="form.opt1">Audit ห้อง Server / Data Center</option>
+        <option data-i18n="form.opt2">วางแผน Preventive Maintenance</option>
+        <option data-i18n="form.opt3">อบรมทีมช่าง / วิศวกร</option>
+        <option data-i18n="form.opt4">ยังไม่แน่ใจ ขอคำปรึกษาก่อน</option>
       </select>
-      <label>รายละเอียดเพิ่มเติม</label>
-      <textarea name="message" rows="4" placeholder="เล่าปัญหาหรือสิ่งที่ต้องการคร่าวๆ"></textarea>
-      <button class="btn" type="submit">ส่งข้อความ</button>
+      <label data-i18n="form.msg.label">รายละเอียดเพิ่มเติม</label>
+      <textarea name="message" rows="4" data-i18n-ph="form.msg.ph" placeholder="เล่าปัญหาหรือสิ่งที่ต้องการคร่าวๆ"></textarea>
+      <button class="btn" type="submit" data-i18n="form.submit">ส่งข้อความ</button>
     </form>
   </div>
 </section>
 
 <footer>
-  <div class="container">© 2026 Texson — ที่ปรึกษา Data Center Facility · Audit · PM Planning · Training</div>
+  <div class="container" data-i18n="footer">© 2026 Texson — ที่ปรึกษา Data Center Facility · Audit · PM Planning · Training</div>
 </footer>
 
 <script>
 (function(){
-  var btn = document.getElementById('themeToggle');
-  function setIcon(t){ btn.textContent = t === 'light' ? '☽' : '☀'; }
-  setIcon(document.documentElement.dataset.theme);
-  btn.addEventListener('click', function(){
+  var T = {
+    th: {
+      title: "TEXSON — ที่ปรึกษา Data Center Facility | Audit · PM Planning · Training",
+      "nav.services": "บริการ", "nav.why": "ทำไมต้องเรา", "nav.process": "ขั้นตอน",
+      "nav.contact": "ติดต่อ", "nav.cta": "ขอใบเสนอราคา",
+      "hero.tag": "ที่ปรึกษา Data Center Facility &amp; Critical Environment",
+      "hero.h1": "ห้อง Server ของคุณ<br>พร้อมรับมือเหตุไฟดับ–ระบบล่ม<em>แค่ไหน?</em>",
+      "hero.p": "เราตรวจประเมิน วางแผนบำรุงรักษา และอบรมทีมงานของคุณ ด้วยประสบการณ์ปฏิบัติงานจริงด้าน Facility Operation, Preventive &amp; Corrective Maintenance ใน Data Center ระดับมืออาชีพ — เพื่อให้ระบบของคุณ \"ไม่ล่ม\" ไม่ใช่แค่ \"ซ่อมเร็ว\"",
+      "hero.cta1": "ปรึกษาฟรี ไม่มีค่าใช้จ่าย", "hero.cta2": "ดูบริการของเรา",
+      "stat1.label": "ประสบการณ์ Facility Operation จริง",
+      "stat2.label": "มุมมองจากงานเดินระบบจริง ไม่ใช่แค่ทฤษฎี",
+      "stat3.label": "รายงานพร้อมแผนแก้ไขที่ทำได้จริง",
+      "pains.h2": "ปัญหาเหล่านี้ คุ้นไหมครับ?",
+      "pains.p": "องค์กรส่วนใหญ่ \"มี\" ห้อง Server แต่ไม่มีคนดูแลระบบ Facility อย่างเป็นระบบ",
+      "pain1.h3": "UPS ไม่เคยถูกทดสอบ", "pain1.p": "แบตเตอรี่เสื่อมโดยไม่รู้ตัว กว่าจะรู้ก็ตอนไฟดับแล้วระบบล่มทั้งบริษัท",
+      "pain2.h3": "แอร์เสียกลางดึก ไม่มีแผนสำรอง", "pain2.p": "อุณหภูมิพุ่ง อุปกรณ์ดับ ไม่มี SOP ว่าใครต้องทำอะไร",
+      "pain3.h3": "ไม่มีแผน PM ที่เป็นระบบ", "pain3.p": "ซ่อมเมื่อพัง (Corrective อย่างเดียว) ค่าใช้จ่ายแฝงสูงกว่าการป้องกันหลายเท่า",
+      "pain4.h3": "ทีมช่างขาดความรู้เฉพาะทาง", "pain4.p": "ดูแลอาคารทั่วไปได้ แต่ไม่เข้าใจ Critical Environment ของห้อง Server",
+      "svc.h2": "บริการของเรา", "svc.p": "ครอบคลุมตั้งแต่ตรวจประเมิน วางระบบ ไปจนถึงสร้างทีมของคุณให้ดูแลเองได้",
+      "svc1.h3": "Facility Audit ห้อง Server / Data Center",
+      "svc1.li1": "ตรวจประเมินระบบไฟฟ้า, UPS, เครื่องกำเนิดไฟฟ้า",
+      "svc1.li2": "ตรวจระบบปรับอากาศ (Precision Air / Cooling)",
+      "svc1.li3": "ระบบดับเพลิง, ควบคุมการเข้าออก, Monitoring",
+      "svc1.li4": "ประเมินความเสี่ยง Single Point of Failure",
+      "svc1.li5": "รายงานผล + แผนแก้ไขเรียงตามความเร่งด่วน",
+      "svc1.fit": "<b>เหมาะกับ:</b> องค์กรที่มีห้อง Server เอง และอยากรู้ว่า \"เสี่ยงตรงไหน\" ก่อนเกิดเหตุ",
+      "svc2.h3": "วางแผน Preventive Maintenance (PM)",
+      "svc2.li1": "ออกแบบแผน PM รายสัปดาห์/เดือน/ปี ทุกระบบ",
+      "svc2.li2": "จัดทำ Checklist และ SOP มาตรฐาน Data Center",
+      "svc2.li3": "วางขั้นตอน Corrective Maintenance และ Escalation",
+      "svc2.li4": "กำหนด Spare Part ที่ควรมีสำรอง",
+      "svc2.li5": "ระบบเอกสารพร้อมใช้ ส่งมอบให้ทีมของคุณ",
+      "svc2.fit": "<b>เหมาะกับ:</b> องค์กรที่ซ่อมเมื่อพัง และอยากเปลี่ยนมาเป็นการป้องกันเชิงระบบ",
+      "svc3.h3": "อบรมทีมช่าง / วิศวกร In-house",
+      "svc3.li1": "พื้นฐาน Critical Environment สำหรับห้อง Server",
+      "svc3.li2": "การทำ PM ระบบไฟฟ้า UPS และระบบปรับอากาศ",
+      "svc3.li3": "การตอบสนองเหตุฉุกเฉิน (Emergency Response)",
+      "svc3.li4": "ฝึกจากเคสจริง ไม่ใช่แค่สไลด์",
+      "svc3.li5": "จัดอบรม On-site ที่หน้างานของคุณ",
+      "svc3.fit": "<b>เหมาะกับ:</b> องค์กรที่อยากให้ทีมตัวเองดูแลได้เอง ลดการพึ่ง Vendor ภายนอก",
+      "why.h2": "ทำไมต้องเรา", "why.p": "เราไม่ใช่ที่ปรึกษาที่รู้แต่ทฤษฎี — เราคือคนที่เดินระบบจริงทุกวัน",
+      "why1.h3": "ประสบการณ์หน้างานจริง", "why1.p": "ปฏิบัติงาน Operation และ Maintenance ใน Data Center จริง เห็นทุกเคสที่เกิดขึ้นจริง ไม่ใช่แค่ในตำรา",
+      "why2.h3": "รายงานที่ทำตามได้จริง", "why2.p": "ไม่ใช่รายงานหนา 100 หน้าที่อ่านไม่รู้เรื่อง แต่เป็นแผนแก้ไขที่เรียงลำดับความเร่งด่วนและงบประมาณชัดเจน",
+      "why3.h3": "เป็นกลาง ไม่ขายของ", "why3.p": "เราไม่ได้เป็นตัวแทนขายอุปกรณ์ยี่ห้อใด คำแนะนำของเราจึงยึดประโยชน์ของคุณเป็นหลัก",
+      "why4.h3": "ถ่ายทอดให้ทีมคุณทำต่อได้", "why4.p": "เป้าหมายคือให้ทีมของคุณดูแลระบบเองได้อย่างมั่นใจ ไม่ใช่ผูกคุณไว้กับเราตลอดไป",
+      "process.h2": "ขั้นตอนการทำงาน", "process.p": "เริ่มต้นง่าย รู้ค่าใช้จ่ายชัดเจนก่อนตัดสินใจ",
+      "step1.h3": "ปรึกษาเบื้องต้น (ฟรี)", "step1.p": "คุยปัญหาและความต้องการ ทางโทรศัพท์หรือออนไลน์ ~30 นาที",
+      "step2.h3": "สำรวจหน้างาน", "step2.p": "เข้าดูสถานที่จริง ประเมินขอบเขตงานและเสนอราคา",
+      "step3.h3": "ดำเนินงาน", "step3.p": "Audit / วางแผน PM / อบรม ตามขอบเขตที่ตกลง",
+      "step4.h3": "ส่งมอบ + ติดตามผล", "step4.p": "รายงานและเอกสารครบถ้วน พร้อมให้คำปรึกษาต่อเนื่อง",
+      "contact.h2": "ปรึกษาฟรี ไม่มีค่าใช้จ่าย",
+      "contact.p": "เล่าปัญหาหรือความต้องการของคุณ เราจะติดต่อกลับภายใน 1 วันทำการ",
+      "contact.phone": "โทรศัพท์", "contact.email": "อีเมล", "contact.hours": "เวลาทำการ",
+      "contact.hours.val": "จันทร์–เสาร์ 9:00–18:00 น.",
+      "form.name.label": "ชื่อ–นามสกุล *", "form.name.ph": "ชื่อของคุณ",
+      "form.company.label": "บริษัท / องค์กร", "form.company.ph": "ชื่อบริษัท",
+      "form.contact.label": "เบอร์โทร / อีเมล *", "form.contact.ph": "ช่องทางติดต่อกลับ",
+      "form.service.label": "บริการที่สนใจ",
+      "form.opt1": "Audit ห้อง Server / Data Center", "form.opt2": "วางแผน Preventive Maintenance",
+      "form.opt3": "อบรมทีมช่าง / วิศวกร", "form.opt4": "ยังไม่แน่ใจ ขอคำปรึกษาก่อน",
+      "form.msg.label": "รายละเอียดเพิ่มเติม", "form.msg.ph": "เล่าปัญหาหรือสิ่งที่ต้องการคร่าวๆ",
+      "form.submit": "ส่งข้อความ",
+      "footer": "© 2026 Texson — ที่ปรึกษา Data Center Facility · Audit · PM Planning · Training"
+    },
+    en: {
+      title: "TEXSON — Data Center Facility Consultant | Audit · PM Planning · Training",
+      "nav.services": "Services", "nav.why": "Why Us", "nav.process": "Process",
+      "nav.contact": "Contact", "nav.cta": "Request Quote",
+      "hero.tag": "Data Center Facility &amp; Critical Environment Consultant",
+      "hero.h1": "Is Your Server Room Ready<br>for Power Outages &amp; System Failures<em>?</em>",
+      "hero.p": "We audit, plan preventive maintenance, and train your team — with real hands-on experience in Facility Operation, Preventive &amp; Corrective Maintenance inside professional-grade Data Centers — so your systems stay up, not just recover quickly.",
+      "hero.cta1": "Free Consultation", "hero.cta2": "Our Services",
+      "stat1.label": "Real Facility Operation Experience",
+      "stat2.label": "Insights from Real Operations, Not Just Theory",
+      "stat3.label": "Reports with Actionable Fix Plans",
+      "pains.h2": "Do Any of These Sound Familiar?",
+      "pains.p": "Most organizations have a server room — but no one managing Facility systems properly.",
+      "pain1.h3": "UPS Has Never Been Tested", "pain1.p": "Batteries degrade silently. You only find out when the power fails and the whole company goes down.",
+      "pain2.h3": "AC Fails at Night, No Backup Plan", "pain2.p": "Temperature spikes, equipment shuts down, no SOP for who does what.",
+      "pain3.h3": "No Systematic PM Plan", "pain3.p": "Reactive-only maintenance (Corrective). Hidden costs far exceed preventive investment.",
+      "pain4.h3": "Technicians Lack Specialized Knowledge", "pain4.p": "They handle general buildings but don't understand Critical Environments for server rooms.",
+      "svc.h2": "Our Services", "svc.p": "From facility assessment to building a self-sufficient team — we cover it all.",
+      "svc1.h3": "Server Room / Data Center Facility Audit",
+      "svc1.li1": "Inspect electrical systems, UPS, and generators",
+      "svc1.li2": "Evaluate precision air conditioning / cooling systems",
+      "svc1.li3": "Fire suppression, access control, and monitoring systems",
+      "svc1.li4": "Assess Single Point of Failure risks",
+      "svc1.li5": "Report + prioritized action plan by urgency",
+      "svc1.fit": "<b>Best for:</b> Organizations with their own server room who want to identify risks before an incident.",
+      "svc2.h3": "Preventive Maintenance (PM) Planning",
+      "svc2.li1": "Design weekly / monthly / annual PM plans for all systems",
+      "svc2.li2": "Create Data Center standard checklists and SOPs",
+      "svc2.li3": "Define corrective maintenance and escalation procedures",
+      "svc2.li4": "Identify critical spare parts to keep on hand",
+      "svc2.li5": "Ready-to-use documentation delivered to your team",
+      "svc2.fit": "<b>Best for:</b> Organizations that repair on failure and want to shift to proactive, systematic protection.",
+      "svc3.h3": "In-house Technician / Engineer Training",
+      "svc3.li1": "Critical Environment fundamentals for server rooms",
+      "svc3.li2": "PM procedures for electrical systems, UPS, and HVAC",
+      "svc3.li3": "Emergency response procedures",
+      "svc3.li4": "Real case studies — not just slides",
+      "svc3.li5": "On-site training at your facility",
+      "svc3.fit": "<b>Best for:</b> Organizations that want their team to manage systems independently, reducing reliance on external vendors.",
+      "why.h2": "Why Choose Us", "why.p": "We're not consultants who only know theory — we're the people who run systems every day.",
+      "why1.h3": "Real On-site Experience", "why1.p": "We've performed Operation and Maintenance in real Data Centers and seen every failure scenario firsthand — not just in textbooks.",
+      "why2.h3": "Actionable Reports", "why2.p": "Not a 100-page report nobody reads. A prioritized action plan with clear budget breakdowns.",
+      "why3.h3": "Vendor-Neutral Advice", "why3.p": "We don't represent any equipment brand. Our recommendations are driven entirely by your best interest.",
+      "why4.h3": "We Build Your Team's Capability", "why4.p": "Our goal is for your team to manage systems confidently on their own — not to keep you dependent on us.",
+      "process.h2": "How We Work", "process.p": "Simple start. Clear pricing before you commit.",
+      "step1.h3": "Initial Consultation (Free)", "step1.p": "Discuss your issues and needs by phone or online — about 30 minutes.",
+      "step2.h3": "Site Survey", "step2.p": "Visit your site, assess the scope of work, and provide a quote.",
+      "step3.h3": "Execution", "step3.p": "Audit / PM planning / Training — as agreed in scope.",
+      "step4.h3": "Delivery + Follow-up", "step4.p": "Complete reports and documentation, plus ongoing advisory support.",
+      "contact.h2": "Free Consultation",
+      "contact.p": "Tell us your problem or requirements. We'll get back to you within 1 business day.",
+      "contact.phone": "Phone", "contact.email": "Email", "contact.hours": "Business Hours",
+      "contact.hours.val": "Mon–Sat 9:00–18:00",
+      "form.name.label": "Full Name *", "form.name.ph": "Your name",
+      "form.company.label": "Company / Organization", "form.company.ph": "Company name",
+      "form.contact.label": "Phone / Email *", "form.contact.ph": "How we can reach you",
+      "form.service.label": "Service of Interest",
+      "form.opt1": "Server Room / Data Center Audit", "form.opt2": "Preventive Maintenance Planning",
+      "form.opt3": "Technician / Engineer Training", "form.opt4": "Not sure yet — just need advice",
+      "form.msg.label": "Additional Details", "form.msg.ph": "Briefly describe your problem or needs",
+      "form.submit": "Send Message",
+      "footer": "© 2026 Texson — Data Center Facility Consultant · Audit · PM Planning · Training"
+    }
+  };
+
+  function applyLang(lang) {
+    var t = T[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var v = t[el.dataset.i18n];
+      if (v !== undefined) el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el) {
+      var v = t[el.dataset.i18nPh];
+      if (v !== undefined) el.placeholder = v;
+    });
+    document.title = t.title;
+    document.documentElement.lang = lang;
+    document.documentElement.dataset.lang = lang;
+  }
+
+  // Theme
+  var themeBtn = document.getElementById('themeToggle');
+  function setThemeIcon(t) { themeBtn.textContent = t === 'light' ? '☽' : '☀'; }
+  setThemeIcon(document.documentElement.dataset.theme);
+  themeBtn.addEventListener('click', function() {
     var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
     localStorage.setItem('theme', next);
-    setIcon(next);
+    setThemeIcon(next);
+  });
+
+  // Language
+  var langBtn = document.getElementById('langToggle');
+  var curLang = document.documentElement.dataset.lang || 'th';
+  function setLangIcon(l) { langBtn.textContent = l === 'th' ? 'EN' : 'TH'; }
+  setLangIcon(curLang);
+  if (curLang !== 'th') applyLang(curLang);
+  langBtn.addEventListener('click', function() {
+    var next = document.documentElement.dataset.lang === 'th' ? 'en' : 'th';
+    applyLang(next);
+    localStorage.setItem('lang', next);
+    setLangIcon(next);
   });
 })();
 </script>
