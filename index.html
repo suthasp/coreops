@@ -2,6 +2,9 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
+<script>
+(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');document.documentElement.dataset.theme=t})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TEXSON — ที่ปรึกษา Data Center Facility | Audit · PM Planning · Training</title>
 <meta name="description" content="บริการตรวจประเมิน (Audit) ห้อง Server และ Data Center, วางแผน Preventive Maintenance และอบรมทีมช่าง/วิศวกร โดยผู้เชี่ยวชาญงาน Facility Operation ตัวจริง">
@@ -12,6 +15,11 @@
 :root{
   --navy:#0a1628; --navy2:#111f35; --cyan:#19c2e6; --cyan-d:#0e9fc0;
   --text:#e8eef6; --muted:#9db0c7; --card:#16273f; --line:#23395a;
+}
+html[data-theme="light"]{
+  --navy:#f0f4f8; --navy2:#e2eaf2;
+  --text:#0d1f36; --muted:#4a6080;
+  --card:#ffffff; --line:#c0d0e4;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -104,6 +112,24 @@ form .btn{width:100%}
 
 footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:.88rem}
 
+/* Theme toggle button */
+.theme-toggle{background:none;border:1px solid var(--line);color:var(--muted);width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:1rem;display:inline-flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0}
+.theme-toggle:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* Light mode overrides for hard-coded #fff colors */
+html[data-theme="light"] nav{background:rgba(240,244,248,.95)}
+html[data-theme="light"] .logo,
+html[data-theme="light"] .hero h1,
+html[data-theme="light"] .sec-head h2,
+html[data-theme="light"] .pain h3,
+html[data-theme="light"] .svc h3,
+html[data-theme="light"] .why-item h3,
+html[data-theme="light"] .step h3,
+html[data-theme="light"] .contact-info h2,
+html[data-theme="light"] .c-line b{color:var(--text)}
+html[data-theme="light"] .logo span{color:var(--cyan)}
+html[data-theme="light"] .nav-links a:hover{color:var(--text)}
+
 @media(max-width:760px){
   .nav-links{display:none}
   .contact-wrap{grid-template-columns:1fr}
@@ -122,6 +148,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
       <a href="#process">ขั้นตอน</a>
       <a href="#contact">ติดต่อ</a>
     </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="สลับโหมด"></button>
     <a class="btn btn-sm" href="#contact">ขอใบเสนอราคา</a>
   </div>
 </nav>
@@ -271,5 +298,18 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
   <div class="container">© 2026 Texson — ที่ปรึกษา Data Center Facility · Audit · PM Planning · Training</div>
 </footer>
 
+<script>
+(function(){
+  var btn = document.getElementById('themeToggle');
+  function setIcon(t){ btn.textContent = t === 'light' ? '☽' : '☀'; }
+  setIcon(document.documentElement.dataset.theme);
+  btn.addEventListener('click', function(){
+    var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('theme', next);
+    setIcon(next);
+  });
+})();
+</script>
 </body>
 </html>
