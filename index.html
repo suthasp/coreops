@@ -37,8 +37,7 @@ a{color:var(--cyan);text-decoration:none}
 /* Nav */
 nav{position:sticky;top:0;z-index:50;background:rgba(10,22,40,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-family:'Prompt';font-weight:700;font-size:1.2rem;color:#fff}
-.logo span{color:var(--cyan)}
+.logo img{height:40px;width:auto;display:block}
 .nav-links{display:flex;gap:28px;font-size:.95rem}
 .nav-links a{color:var(--muted)}
 .nav-links a:hover{color:#fff}
@@ -123,7 +122,6 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
 
 /* Light mode overrides */
 html[data-theme="light"] nav{background:rgba(240,244,248,.95)}
-html[data-theme="light"] .logo,
 html[data-theme="light"] .hero h1,
 html[data-theme="light"] .sec-head h2,
 html[data-theme="light"] .pain h3,
@@ -132,7 +130,7 @@ html[data-theme="light"] .why-item h3,
 html[data-theme="light"] .step h3,
 html[data-theme="light"] .contact-info h2,
 html[data-theme="light"] .c-line b{color:var(--text)}
-html[data-theme="light"] .logo span{color:var(--cyan)}
+
 html[data-theme="light"] .nav-links a:hover{color:var(--text)}
 
 @media(max-width:760px){
@@ -146,7 +144,7 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
 
 <nav>
   <div class="container nav-inner">
-    <div class="logo">TEX<span>SON</span></div>
+    <div class="logo"><img src="logo.png" alt="TEXSON"></div>
     <div class="nav-links">
       <a href="#services" data-i18n="nav.services">บริการ</a>
       <a href="#why" data-i18n="nav.why">ทำไมต้องเรา</a>
