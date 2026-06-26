@@ -1,0 +1,14 @@
+node_modules/
+package.json
+package-lock.json
+
+# Scratch scripts & backups
+*.backup.*
+do_edit.js
+edit_logo.js
+find_coords.js
+find_gaps.js
+
+# OS generated files
+.DS_Store
+Thumbs.db
