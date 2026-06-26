@@ -37,7 +37,26 @@ a{color:var(--cyan);text-decoration:none}
 /* Nav */
 nav{position:sticky;top:0;z-index:50;background:rgba(10,22,40,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:100px}
-.logo img{height:80px;width:auto;display:block}
+
+/* TEXSON Logo */
+.texson-logo {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  display: flex;
+  align-items: baseline;
+  letter-spacing: 1px;
+}
+.logo-te { color: #ffffff; transition: color 0.3s; }
+.logo-son { color: #00b4d8; }
+.logo-x-wrap {
+  display: inline-block;
+  width: 63px;
+  margin: 0;
+  transform: translateY(2px);
+}
+.logo-img-dark, .logo-img-light { width: 100%; display: block; }
+.logo-img-light { display: none; }
 .nav-links{display:flex;gap:28px;font-size:.95rem}
 .nav-links a{color:var(--muted)}
 .nav-links a:hover{color:#fff}
@@ -131,6 +150,9 @@ html[data-theme="light"] .step h3,
 html[data-theme="light"] .contact-info h2,
 html[data-theme="light"] .c-line b{color:var(--text)}
 
+html[data-theme="light"] .logo-te { color: #1e293b; }
+html[data-theme="light"] .logo-img-dark { display: none; }
+html[data-theme="light"] .logo-img-light { display: block; }
 html[data-theme="light"] .nav-links a:hover{color:var(--text)}
 
 @media(max-width:760px){
@@ -144,7 +166,16 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
 
 <nav>
   <div class="container nav-inner">
-    <div class="logo"><img src="logo.png" alt="TEXSON"></div>
+    <a href="#" class="logo" style="text-decoration: none;">
+      <div class="texson-logo">
+        <span class="logo-te">TE</span>
+        <div class="logo-x-wrap">
+          <img src="building_x.png" class="logo-img-dark" alt="X">
+          <img src="building_x_light_final4.png" class="logo-img-light" alt="X">
+        </div>
+        <span class="logo-son">SON</span>
+      </div>
+    </a>
     <div class="nav-links">
       <a href="#services" data-i18n="nav.services">บริการ</a>
       <a href="#why" data-i18n="nav.why">ทำไมต้องเรา</a>
