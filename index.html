@@ -154,10 +154,48 @@ html[data-theme="light"] .logo-img-dark { display: none; }
 html[data-theme="light"] .logo-img-light { display: block; }
 html[data-theme="light"] .nav-links a:hover{color:var(--text)}
 
-@media(max-width:760px){
-  .nav-links{display:none}
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;flex-shrink:0}
+.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;display:block;transition:.25s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Tablet ≤ 900px */
+@media(max-width:900px){
+  .hamburger{display:flex}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--navy2);border-bottom:1px solid var(--line);padding:8px 0;z-index:100}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:14px 24px;font-size:1rem;border-bottom:1px solid var(--line)}
+  .nav-links a:last-child{border-bottom:none}
+  .nav-controls .btn-sm{display:none}
   .contact-wrap{grid-template-columns:1fr}
-  section{padding:60px 0}
+  section{padding:64px 0}
+}
+
+/* Mobile ≤ 600px */
+@media(max-width:600px){
+  .texson-logo{font-size:32px}
+  .logo-x-wrap{width:34px;margin:0 3px}
+  .nav-inner{height:64px}
+  .ctrl-btn{min-width:30px;height:30px;font-size:.78rem;padding:0 6px}
+  .hero{padding:52px 0 40px}
+  .stats{gap:20px}
+  .stat b{font-size:1.4rem}
+  section{padding:48px 0}
+  form{padding:20px 16px}
+  .sec-head{margin-bottom:32px}
+}
+
+/* Small phones ≤ 400px */
+@media(max-width:400px){
+  .container{padding:0 14px}
+  .nav-controls{gap:6px}
+  .texson-logo{font-size:26px}
+  .logo-x-wrap{width:28px;margin:0 2px}
+  .stats{flex-direction:column;gap:12px}
+  .hero-cta{flex-direction:column}
+  .hero-cta .btn{text-align:center}
 }
 </style>
 </head>
@@ -184,13 +222,14 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
         <span class="logo-son">SON</span>
       </div>
     </a>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#services" data-i18n="nav.services">บริการ</a>
       <a href="#why" data-i18n="nav.why">ทำไมต้องเรา</a>
       <a href="#process" data-i18n="nav.process">ขั้นตอน</a>
       <a href="#contact" data-i18n="nav.contact">ติดต่อ</a>
     </div>
     <div class="nav-controls">
+      <button class="hamburger" id="menuToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
       <button class="ctrl-btn" id="langToggle" aria-label="Switch language">EN</button>
       <button class="ctrl-btn" id="themeToggle" aria-label="Switch theme">☀</button>
       <a class="btn btn-sm" href="#contact" data-i18n="nav.cta">ขอใบเสนอราคา</a>
@@ -498,6 +537,20 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
     document.documentElement.dataset.theme = next;
     localStorage.setItem('theme', next);
     setThemeIcon(next);
+  });
+
+  // Hamburger menu
+  var menuBtn = document.getElementById('menuToggle');
+  var navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', function() {
+    menuBtn.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menuBtn.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
   });
 
   // Language
