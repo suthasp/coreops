@@ -107,6 +107,17 @@ section{padding:80px 0}
 .svc .fit{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);font-size:.88rem;color:var(--muted)}
 .svc .fit b{color:var(--text)}
 
+/* Products */
+.products{border-top:1px solid var(--line)}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.prod{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px 24px;transition:.2s}
+.prod:hover{border-color:var(--cyan);transform:translateY(-4px)}
+.prod .ic{font-size:1.6rem;margin-bottom:12px;display:block}
+.prod h3{font-size:1.05rem;color:#fff;margin-bottom:10px}
+.prod ul{list-style:none}
+.prod li{padding-left:18px;position:relative;margin-bottom:8px;color:var(--muted);font-size:.92rem}
+.prod li::before{content:"›";position:absolute;left:0;color:var(--cyan);font-weight:700}
+
 /* Why us */
 .why{background:var(--navy2)}
 .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
@@ -144,6 +155,7 @@ html[data-theme="light"] .hero h1,
 html[data-theme="light"] .sec-head h2,
 html[data-theme="light"] .pain h3,
 html[data-theme="light"] .svc h3,
+html[data-theme="light"] .prod h3,
 html[data-theme="light"] .why-item h3,
 html[data-theme="light"] .step h3,
 html[data-theme="light"] .contact-info h2,
@@ -227,6 +239,7 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#services" data-i18n="nav.services">บริการ</a>
+      <a href="#products" data-i18n="nav.products">สินค้า</a>
       <a href="#why" data-i18n="nav.why">ทำไมต้องเรา</a>
       <a href="#process" data-i18n="nav.process">ขั้นตอน</a>
       <a href="#contact" data-i18n="nav.contact">ติดต่อ</a>
@@ -320,6 +333,53 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
   </div>
 </section>
 
+<section class="products" id="products">
+  <div class="container">
+    <div class="sec-head">
+      <h2 data-i18n="prod.h2">สินค้าและอุปกรณ์</h2>
+      <p data-i18n="prod.p">จัดหาอุปกรณ์ระบบ Facility สำหรับห้อง Server โดยเลือกสเปกให้เหมาะกับหน้างานจริง ไม่ผูกกับยี่ห้อใดยี่ห้อหนึ่ง</p>
+    </div>
+    <div class="prod-grid">
+      <div class="prod">
+        <span class="ic">⚡</span>
+        <h3 data-i18n="prod1.h3">ระบบไฟฟ้าและไฟสำรอง</h3>
+        <ul>
+          <li data-i18n="prod1.li1">UPS และแบตเตอรี่สำรอง</li>
+          <li data-i18n="prod1.li2">ตู้ MDB / ตู้ไฟฟ้าย่อย</li>
+          <li data-i18n="prod1.li3">ATS และเครื่องกำเนิดไฟฟ้า</li>
+        </ul>
+      </div>
+      <div class="prod">
+        <span class="ic">❄️</span>
+        <h3 data-i18n="prod2.h3">ระบบปรับอากาศห้อง Server</h3>
+        <ul>
+          <li data-i18n="prod2.li1">Precision Air / In-row Cooling</li>
+          <li data-i18n="prod2.li2">ระบบจัดการลมร้อน–ลมเย็น (Containment)</li>
+          <li data-i18n="prod2.li3">อะไหล่และชุดบำรุงรักษา</li>
+        </ul>
+      </div>
+      <div class="prod">
+        <span class="ic">🗄️</span>
+        <h3 data-i18n="prod3.h3">ตู้ Rack และโครงสร้างพื้นฐาน</h3>
+        <ul>
+          <li data-i18n="prod3.li1">ตู้ Rack และอุปกรณ์จัดเก็บสาย</li>
+          <li data-i18n="prod3.li2">PDU และระบบจ่ายไฟในตู้</li>
+          <li data-i18n="prod3.li3">Raised Floor และงานเดินสายสัญญาณ</li>
+        </ul>
+      </div>
+      <div class="prod">
+        <span class="ic">📡</span>
+        <h3 data-i18n="prod4.h3">Monitoring และความปลอดภัย</h3>
+        <ul>
+          <li data-i18n="prod4.li1">ระบบ Monitoring อุณหภูมิ ความชื้น น้ำรั่ว</li>
+          <li data-i18n="prod4.li2">ระบบดับเพลิงสำหรับห้อง Server</li>
+          <li data-i18n="prod4.li3">ระบบควบคุมการเข้าออกและกล้องวงจรปิด</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="why" id="why">
   <div class="container">
     <div class="sec-head">
@@ -391,7 +451,7 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
   var T = {
     th: {
       title: "TEXSON — ที่ปรึกษา Data Center Facility | Audit · PM Planning · Training",
-      "nav.services": "บริการ", "nav.why": "ทำไมต้องเรา", "nav.process": "ขั้นตอน",
+      "nav.services": "บริการ", "nav.products": "สินค้า", "nav.why": "ทำไมต้องเรา", "nav.process": "ขั้นตอน",
       "nav.contact": "ติดต่อ", "nav.cta": "ขอใบเสนอราคา",
       "hero.tag": "ที่ปรึกษา Data Center Facility &amp; Critical Environment",
       "hero.h1": "ห้อง Server ของคุณ<br>พร้อมรับมือเหตุไฟดับ–ระบบล่ม<em>แค่ไหน?</em>",
@@ -428,6 +488,24 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
       "svc3.li4": "ฝึกจากเคสจริง ไม่ใช่แค่สไลด์",
       "svc3.li5": "จัดอบรม On-site ที่หน้างานของคุณ",
       "svc3.fit": "<b>เหมาะกับ:</b> องค์กรที่อยากให้ทีมตัวเองดูแลได้เอง ลดการพึ่ง Vendor ภายนอก",
+      "prod.h2": "สินค้าและอุปกรณ์",
+      "prod.p": "จัดหาอุปกรณ์ระบบ Facility สำหรับห้อง Server โดยเลือกสเปกให้เหมาะกับหน้างานจริง ไม่ผูกกับยี่ห้อใดยี่ห้อหนึ่ง",
+      "prod1.h3": "ระบบไฟฟ้าและไฟสำรอง",
+      "prod1.li1": "UPS และแบตเตอรี่สำรอง",
+      "prod1.li2": "ตู้ MDB / ตู้ไฟฟ้าย่อย",
+      "prod1.li3": "ATS และเครื่องกำเนิดไฟฟ้า",
+      "prod2.h3": "ระบบปรับอากาศห้อง Server",
+      "prod2.li1": "Precision Air / In-row Cooling",
+      "prod2.li2": "ระบบจัดการลมร้อน–ลมเย็น (Containment)",
+      "prod2.li3": "อะไหล่และชุดบำรุงรักษา",
+      "prod3.h3": "ตู้ Rack และโครงสร้างพื้นฐาน",
+      "prod3.li1": "ตู้ Rack และอุปกรณ์จัดเก็บสาย",
+      "prod3.li2": "PDU และระบบจ่ายไฟในตู้",
+      "prod3.li3": "Raised Floor และงานเดินสายสัญญาณ",
+      "prod4.h3": "Monitoring และความปลอดภัย",
+      "prod4.li1": "ระบบ Monitoring อุณหภูมิ ความชื้น น้ำรั่ว",
+      "prod4.li2": "ระบบดับเพลิงสำหรับห้อง Server",
+      "prod4.li3": "ระบบควบคุมการเข้าออกและกล้องวงจรปิด",
       "why.h2": "ทำไมต้องเรา", "why.p": "เราไม่ใช่ที่ปรึกษาที่รู้แต่ทฤษฎี — เราคือคนที่เดินระบบจริงทุกวัน",
       "why1.h3": "ประสบการณ์หน้างานจริง", "why1.p": "ปฏิบัติงาน Operation และ Maintenance ใน Data Center จริง เห็นทุกเคสที่เกิดขึ้นจริง ไม่ใช่แค่ในตำรา",
       "why2.h3": "รายงานที่ทำตามได้จริง", "why2.p": "ไม่ใช่รายงานหนา 100 หน้าที่อ่านไม่รู้เรื่อง แต่เป็นแผนแก้ไขที่เรียงลำดับความเร่งด่วนและงบประมาณชัดเจน",
@@ -454,7 +532,7 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
     },
     en: {
       title: "TEXSON — Data Center Facility Consultant | Audit · PM Planning · Training",
-      "nav.services": "Services", "nav.why": "Why Us", "nav.process": "Process",
+      "nav.services": "Services", "nav.products": "Products", "nav.why": "Why Us", "nav.process": "Process",
       "nav.contact": "Contact", "nav.cta": "Request Quote",
       "hero.tag": "Data Center Facility &amp; Critical Environment Consultant",
       "hero.h1": "Is Your Server Room Ready<br>for Power Outages &amp; System Failures<em>?</em>",
@@ -491,6 +569,24 @@ html[data-theme="light"] .nav-links a:hover{color:var(--text)}
       "svc3.li4": "Real case studies — not just slides",
       "svc3.li5": "On-site training at your facility",
       "svc3.fit": "<b>Best for:</b> Organizations that want their team to manage systems independently, reducing reliance on external vendors.",
+      "prod.h2": "Products & Equipment",
+      "prod.p": "We source facility equipment for server rooms and specify it to match your real site conditions — vendor-neutral, not tied to any single brand.",
+      "prod1.h3": "Power & Backup Systems",
+      "prod1.li1": "UPS units and backup batteries",
+      "prod1.li2": "MDB and distribution panels",
+      "prod1.li3": "ATS and generators",
+      "prod2.h3": "Server Room Cooling",
+      "prod2.li1": "Precision air / in-row cooling",
+      "prod2.li2": "Hot / cold aisle containment",
+      "prod2.li3": "Spare parts and maintenance kits",
+      "prod3.h3": "Racks & Infrastructure",
+      "prod3.li1": "Server racks and cable management",
+      "prod3.li2": "PDUs and in-rack power distribution",
+      "prod3.li3": "Raised floor and structured cabling",
+      "prod4.h3": "Monitoring & Safety",
+      "prod4.li1": "Temperature, humidity, and water-leak monitoring",
+      "prod4.li2": "Fire suppression for server rooms",
+      "prod4.li3": "Access control and CCTV",
       "why.h2": "Why Choose Us", "why.p": "We're not consultants who only know theory — we're the people who run systems every day.",
       "why1.h3": "Real On-site Experience", "why1.p": "We've performed Operation and Maintenance in real Data Centers and seen every failure scenario firsthand — not just in textbooks.",
       "why2.h3": "Actionable Reports", "why2.p": "Not a 100-page report nobody reads. A prioritized action plan with clear budget breakdowns.",
